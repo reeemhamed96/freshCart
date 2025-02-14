@@ -19,11 +19,17 @@ export default function Allorders() {
         SetIsLoading(true)
 
         axios.get(`https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`).then(({ data }) => {
-            // console.log(data.reverse());
+            console.log(data);
             SetOrderData(data)
+
+
+        }).catch((err) => {
+            console.log(err);
+        }).finally(() => {
             SetIsLoading(false)
 
         })
+
     }
 
     if (isLoading) {
