@@ -25,12 +25,13 @@ export default function Address() {
             headers: {
                 token: localStorage.getItem("token")
             }, params: {
-                url: "http://localhost:5173/freshCart"
+                url: "https://reeemhamed96.github.io/freshCart"
 
             }
         }).then(({ data }) => {
             console.log(data.session.url);
             location.href = data.session.url
+
         }).catch((err) => {
             console.log(err.response.data.message);
             setErrMsg(err.response.data.message)
