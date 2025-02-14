@@ -25,7 +25,7 @@ export default function Address() {
             headers: {
                 token: localStorage.getItem("token")
             }, params: {
-                url: "http://localhost:5173"
+                url: "http://localhost:5173/freshCart"
 
             }
         }).then(({ data }) => {
@@ -55,19 +55,23 @@ export default function Address() {
     });
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className='grid gap-4 mx-auto w-2/3 grid-cols-2'>
+        <div className='container pt-9'>
+            <h2 className='text-center mb-5 font-manrope font-bold text-3xl leading-10 text-black '>Shipping Address</h2>
 
-                <Input isInvalid={touched.details && errors.details} errorMessage={errors.details} onBlur={handleBlur} onChange={handleChange} value={values.address} name='details' variant='bordered' className='col-span-2' label="Address" type='text'></Input>
+            <form onSubmit={handleSubmit}>
+                <div className='grid gap-4 mx-auto w-2/3 grid-cols-2'>
 
-                <Input isInvalid={touched.phone && errors.phone} errorMessage={errors.phone} onBlur={handleBlur} onChange={handleChange} value={values.phone} name='phone' variant='bordered' className='col-span-2' label="Phone" type='phone'></Input>
+                    <Input isInvalid={touched.details && errors.details} errorMessage={errors.details} onBlur={handleBlur} onChange={handleChange} value={values.address} name='details' variant='bordered' className='col-span-2' label="Address" type='text'></Input>
 
-                <Input isInvalid={touched.city && errors.city} errorMessage={errors.city} onBlur={handleBlur} onChange={handleChange} value={values.city} name='city' variant='bordered' className='col-span-2' label="City" type='text'></Input>
-                <Button isLoading={isLoading} className='col-span-2' color="primary" type='submit'>Pay Now</Button>
-                <p className='text-red-500'>{errMsg}</p>
+                    <Input isInvalid={touched.phone && errors.phone} errorMessage={errors.phone} onBlur={handleBlur} onChange={handleChange} value={values.phone} name='phone' variant='bordered' className='col-span-2' label="Phone" type='phone'></Input>
 
-            </div>
+                    <Input isInvalid={touched.city && errors.city} errorMessage={errors.city} onBlur={handleBlur} onChange={handleChange} value={values.city} name='city' variant='bordered' className='col-span-2' label="City" type='text'></Input>
+                    <Button isLoading={isLoading} className='col-span-2' color="primary" type='submit'>Pay Now</Button>
+                    <p className='text-red-500'>{errMsg}</p>
 
-        </form>
+                </div>
+
+            </form>
+        </div>
     )
 }
