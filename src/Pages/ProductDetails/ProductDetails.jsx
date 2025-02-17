@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import Slider from "react-slick";
@@ -7,16 +7,15 @@ import { addToCart } from '../../Services/cartServices';
 import RelatedProducts from '../../Components/RelatedProducts/RelatedProducts';
 import { Button } from '@heroui/react';
 import WishIcon from '../../Components/WishIcon/WishIcon';
-import { wishlist } from '../Wishlist/wishlist';
+
 
 
 
 export default function ProductDetails() {
     let { id } = useParams()
     const [product, setProduct] = useState(null)
-    const [isLoad, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
     const [relatedProduct, setRelatedProduct] = useState([])
-    const { isLoading } = wishlist()
 
     const settings = {
         dots: true,
@@ -51,7 +50,7 @@ export default function ProductDetails() {
 
     }
 
-    if (isLoading || isLoad) {
+    if (isLoading) {
         return <LoadingScreen />
 
     }

@@ -7,7 +7,7 @@ import { authContext } from '../../Contexts/AuthContext';
 export default function ResetPassword() {
     const [isLoading, setIsLoading] = useState(false)
     const [errMsg, setErrMsg] = useState("")
-    const { setSuccess } = useContext(authContext)
+    const { setSuccess, setUpdatePass } = useContext(authContext)
 
     const initialValues = {
         email: '',
@@ -21,6 +21,7 @@ export default function ResetPassword() {
 
         axios.put("https://ecommerce.routemisr.com/api/v1/auth/resetPassword", values).then((res) => {
             setSuccess(false)
+            setUpdatePass(true)
 
 
         }).catch((err) => {

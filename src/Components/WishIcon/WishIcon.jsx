@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { wishlist } from '../../Pages/Wishlist/wishlist'
 import { Button } from '@heroui/react'
-import { addToWishlist, deleteFromWishlist } from '../../Services/wishlistServices'
+import { useContext } from 'react';
+import { wishlistContext } from '../../Contexts/WishlistContext';
 export const HeartIcon = ({ fill = "red", filled, size, height, width, ...props }) => {
     return (
         <svg
@@ -25,19 +25,17 @@ export const HeartIcon = ({ fill = "red", filled, size, height, width, ...props 
 
 export default function WishIcon({ productID }) {
     const [heartColor, setIconColor] = useState("white")
-    const { data } = wishlist()
-    let wishlistData = structuredClone(data?.data)
-    function existInWishlist(productID) {
-        let index = wishlistData?.findIndex((el) => {
-            return el._id === productID
-        })
-        if (index != -1) {
+    const { wishlistData, addToWishlist, deleteFromWishlist, wishlistDataID } = useContext(wishlistContext)
 
-            return true
-        }
+    function existInWishlist(productID) {
+
+        return wishlistDataID.find((el) => {
+            return (el._id || el) === productID
+        })
 
     }
     useEffect(() => {
+
         existInWishlist(productID) ? setIconColor("#fb6f92") : setIconColor("white")
 
     }, [])
@@ -48,10 +46,14 @@ export default function WishIcon({ productID }) {
                 addToWishlist(productID)
                 setIconColor("#fb6f92")
 
+
+
             }
             else {
-                setIconColor("white")
                 deleteFromWishlist(productID)
+                setIconColor("white")
+
+
 
 
             }

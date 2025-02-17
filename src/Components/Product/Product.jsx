@@ -6,13 +6,9 @@ import WishIcon from '../WishIcon/WishIcon'
 
 export default function Product({ product }) {
 
-
-
-
-
     return (<div className=" mx-auto shadow-md border  transform overflow-hidden rounded-lg bg-white duration-300 hover:scale-[102%] hover:shadow-lg flex flex-col justify-between  ">
 
-        <Link to={"/product/" + product._id} className=" pb-0">
+        <Link to={"/product/" + product._id} className=" pb-0" >
             <img className=" w-full" src={product.imageCover} alt="Product Image" />
             <div className='px-4 pt-2'>
                 <h2 className="mb-2 text-lg font-medium dark:text-white text-gray-900 line-clamp-1">{product.title}</h2>

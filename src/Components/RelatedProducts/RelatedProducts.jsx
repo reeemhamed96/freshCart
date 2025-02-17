@@ -3,7 +3,7 @@ import Product from '../Product/Product'
 import Slider from "react-slick";
 
 
-export default function RelatedProducts({ relatedProduct }) {
+export default function RelatedProducts({ relatedProduct, setProduct }) {
 
 
     const settings = {

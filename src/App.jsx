@@ -23,6 +23,7 @@ import ForgetPassword from './Pages/ForgetPassword/ForgetPassword'
 import VerifyCode from './Pages/VerifyCode/VerifyCode'
 import ResetPassword from './Pages/ResetPassword/ResetPassword'
 import ProtectedPasswors from './Auth/ProtectedPasswors'
+import WishlistContextProvider from './Contexts/WishlistContext'
 
 
 
@@ -62,11 +63,13 @@ function App() {
 
     <QueryClientProvider client={quertclient}>
       <AuthContextProvider>
-        <HeroUIProvider>
-          <RouterProvider router={routers}></RouterProvider>
-          <ToastContainer />
+        <WishlistContextProvider>
+          <HeroUIProvider>
+            <RouterProvider router={routers}></RouterProvider>
+            <ToastContainer />
 
-        </HeroUIProvider>
+          </HeroUIProvider>
+        </WishlistContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>
 

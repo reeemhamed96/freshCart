@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import Product from '../../Components/Product/Product';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
-import { wishlist } from '../Wishlist/wishlist';
 import banner from "../../assets/sale.jpg"
-
-
-
+import { wishlistContext } from '../../Contexts/WishlistContext';
 export default function Home() {
     const [products, setProducts] = useState([])
-    const { isLoading, data } = wishlist()
-    const [isLoad, setIsLoading] = useState(true)
+    const [isLoad, setIsLoad] = useState([])
+    const { isLoading } = useContext(wishlistContext)
+
 
     useEffect(() => {
         getAllProduct()
-    }, [data])
+
+    }, [])
 
     function getAllProduct() {
-        setIsLoading(true)
+        setIsLoad(true)
 
         axios.get("https://ecommerce.routemisr.com/api/v1/products").then(({ data }) => {
             // console.log(data.data);
@@ -26,14 +25,14 @@ export default function Home() {
 
 
         }).finally(() => {
-            setIsLoading(false)
+            setIsLoad(false)
         })
 
 
 
     }
 
-    if (isLoading || isLoad) {
+    if (isLoad || isLoading) {
         return <LoadingScreen />
 
 

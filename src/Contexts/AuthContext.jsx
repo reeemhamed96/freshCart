@@ -10,6 +10,7 @@ export default function AuthContextProvider({ children }) {
     const [userId, setUserId] = useState("")
     const [userName, setUserName] = useState("")
     const [success, setSuccess] = useState(false)
+    const [updatePass, setUpdatePass] = useState(false)
 
 
     useEffect(() => {
@@ -45,6 +46,6 @@ export default function AuthContextProvider({ children }) {
     }
     window.addEventListener('storage', verifyToken)
 
-    return <authContext.Provider value={{ IsLoggedIn, setIsLoggedIn, success, setSuccess, isLoad, userId, userName }}>{children}</authContext.Provider>
+    return <authContext.Provider value={{ IsLoggedIn, setIsLoggedIn, success, setSuccess, isLoad, userId, userName, updatePass, setUpdatePass }}>{children}</authContext.Provider>
 
 }
